@@ -11,6 +11,7 @@ const Switch = (props) => {
   const pages = {
     Login: "Login",
     Dashboard: "Dashboard",
+    Feed: "Feed",
   };
   const [currentPage, setCurrentPage] = React.useState(pages.Login);
   const getPage = () => {
@@ -21,6 +22,9 @@ const Switch = (props) => {
         break;
       case pages.Dashboard:
         return <Dashboard />;
+        break;
+      case pages.Feed:
+        return <Feed />;
         break;
 
       default:
