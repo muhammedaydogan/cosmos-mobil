@@ -9,8 +9,8 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { Color } from "../util/Config";
-import { onLogin } from '../redux/actions'
-import {changeScreen } from '../redux/actions/screens'
+import { onLogin } from "../redux/actions";
+import { changeScreen } from "../redux/actions/screens";
 
 const classes = {
   root: {
@@ -71,10 +71,10 @@ const Login = (props) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const submitLogin = () =>{
-      console.log('sea')
-      props.changeScreen('Dashboard')
-  }
+  const submitLogin = () => {
+    console.log("sea");
+    props.changeScreen("Dashboard");
+  };
 
   return (
     <View style={classes.root}>
@@ -103,7 +103,12 @@ const Login = (props) => {
         />
       </View>
       <View style={classes.submit}>
-        <TouchableOpacity style={classes.button} onPress={()=>{submitLogin()}}>
+        <TouchableOpacity
+          style={classes.button}
+          onPress={() => {
+            submitLogin();
+          }}
+        >
           <Text style={classes.buttonText}>Giris</Text>
         </TouchableOpacity>
       </View>
@@ -113,4 +118,4 @@ const Login = (props) => {
   );
 };
 
-export default connect(undefined,{ onLogin, changeScreen })(Login);
+export default connect(undefined, { onLogin, changeScreen })(Login);

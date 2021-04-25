@@ -1,9 +1,9 @@
 {
-  "name": "etherci",
-  "displayName": "etherci",
+  "name": "cosmos",
+  "displayName": "cosmos",
   "expo": {
-    "name": "etherci",
-    "slug": "etherci",
+    "name": "cosmos",
+    "slug": "cosmos",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"

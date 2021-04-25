@@ -1,8 +1,8 @@
 const initial = {
-  miner_address: '16591f93ae0bd4b4a3c0cf049200885cde7d0c76'
+  miner_address: "16591f93ae0bd4b4a3c0cf049200885cde7d0c76",
 };
 
-export default (state = initial, action) => {
+export const auth = (state = initial, action) => {
   switch (action.type) {
     case "LOGIN":
       return {

@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   StyleSheet,
@@ -7,11 +6,13 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import { connect } from "react-redux";
-import { Color } from "../util/Config";
-import { onLogin } from '../redux/actions'
-import {changeScreen } from '../redux/actions/screens'
 import axios from "axios";
+
+import { Color } from "../util/Config";
+import { onLogin } from "../redux/actions";
+import { changeScreen } from "../redux/actions/screens";
 
 const classes = {
   root: {
@@ -26,33 +27,35 @@ const classes = {
     color: Color.third,
     alignSelf: "center",
   },
-
 };
 
 const Dashboard = (props) => {
-
   const [cHash, setCHash] = React.useState(0);
 
-  React.useEffect(()=>{
-    getRates()
-  })
+  React.useEffect(() => {
+    getRates();
+  });
 
   const getRates = async () => {
     console.log(props.miner_address);
-    const res = await axios.get(`https://api.ethermine.org/miner/${props.miner_address}/workers/`);
-    const miner1 = res.data.data[0]
-    setCHash(miner1.currentHashrate)
-  }
+    const res = await axios.get(
+      `https://api.ethermine.org/miner/${props.miner_address}/workers/`
+    );
+    const miner1 = res.data.data[0];
+    setCHash(miner1.currentHashrate);
+  };
   return (
     <View style={classes.root}>
       <View style={classes.headerContainer}>
-      <Text style={classes.header}>currentHashrate {cHash}</Text>
+        <Text style={classes.header}>currentHashrate {cHash}</Text>
       </View>
-      
     </View>
   );
 };
 
-export default connect(state=>({
-  miner_address: state.auth.miner_address
-}),{ onLogin, changeScreen })(Dashboard);
+export default connect(
+  (state) => ({
+    miner_address: state.auth.miner_address,
+  }),
+  { onLogin, changeScreen }
+)(Dashboard);

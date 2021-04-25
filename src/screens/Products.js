@@ -2,7 +2,7 @@ import React from "react";
 
 import { Text } from "react-native";
 
-export const Feed = () => {
+export const Products = () => {
   return (
     <Text
       style={{
