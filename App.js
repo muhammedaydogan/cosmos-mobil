@@ -28,4 +28,3 @@ const classes = StyleSheet.create({
     height: "100%",
   },
 });
-registerRootComponent(App);
