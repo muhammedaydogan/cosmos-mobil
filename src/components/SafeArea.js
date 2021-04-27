@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform, StatusBar } from "react-native";
+import { Platform, StatusBar, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 // import styled from "styled-components";
 
@@ -15,12 +15,9 @@ const isAndroid = Platform.OS === "android";
 // `;
 
 export const SafeArea = (props) => {
-  return (
-    <SafeAreaView
-      style={{ flex: 1, marginTop: isAndroid ? StatusBar.currentHeight : 0 }}
-      {...props}
-    >
-      {/* {props.children} */}
-    </SafeAreaView>
-  );
+  return <SafeAreaView style={styles.safeArea} {...props} />;
 };
+
+const styles = StyleSheet.create({
+  safeArea: { flex: 1, marginTop: isAndroid ? StatusBar.currentHeight : 0 },
+});

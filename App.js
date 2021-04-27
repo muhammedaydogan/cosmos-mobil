@@ -1,9 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { createStore } from "redux";
-import { Provider, connect } from "react-redux";
-import { registerRootComponent } from "expo";
-// import thunk from "redux-thunk";
+import { Provider } from "react-redux";
 
 import { Color } from "./src/util/Config";
 import Switch from "./src/screens/Switch";

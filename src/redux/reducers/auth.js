@@ -12,6 +12,4 @@ export const auth = (state = initial, action) => {
     default:
       return state;
   }
-
-  return state;
 };

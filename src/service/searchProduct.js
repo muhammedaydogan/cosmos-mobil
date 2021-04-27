@@ -1,4 +1,3 @@
-import { ORDER_FILTER, GET_ONE_ORDER, MODIFY_ORDER } from "./types";
 import { server } from "./server";
 
 export const balancePost = (payload) => async (dispatch, getState) => {
@@ -10,9 +9,7 @@ export const balancePost = (payload) => async (dispatch, getState) => {
     {
       headers: {
         "Content-Type": "application/json",
-        Authorization:
-          sessionStorage.getItem("token") ||
-          `${getState().auth.userData.token}`,
+        Authorization: `${getState().auth.userData.token}`,
       },
     }
   );

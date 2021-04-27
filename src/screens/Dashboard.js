@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  TextInput,
-} from "react-native";
-import { StatusBar } from "expo-status-bar";
+import { Text, View } from "react-native";
 import { connect } from "react-redux";
 import axios from "axios";
 
