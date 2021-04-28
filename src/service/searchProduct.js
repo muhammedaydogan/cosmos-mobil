@@ -9,7 +9,7 @@ export const balancePost = (payload) => async (dispatch, getState) => {
     {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `${getState().auth.userData.token}`,
+        // Authorization: `${getState().auth.userData.token}`,
       },
     }
   );

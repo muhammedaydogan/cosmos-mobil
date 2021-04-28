@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Login from "./Login.js";
 import Dashboard from "./Dashboard";
 import { Products } from "./Products.js";
-import { SafeArea } from "../components/SafeArea";
+import { SafeArea } from "../components/safe-area.component";
 import { Feed } from "./Feed.js";
 
 const Switch = (props) => {
