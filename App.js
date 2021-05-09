@@ -21,7 +21,6 @@ export default function App() {
 
 const classes = StyleSheet.create({
   root: {
-    backgroundColor: Color.first,
     width: "100%",
     height: "100%",
   },
