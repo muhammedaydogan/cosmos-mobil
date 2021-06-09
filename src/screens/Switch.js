@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { View, Text } from "react-native";
+import { View, Dimensions } from "react-native";
+import { Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import Login from "./Login.js";
@@ -10,7 +11,15 @@ import { SafeArea } from "../components/safe-area.component";
 import { Feed } from "./Feed.js";
 import { ProductDetails } from "./ProductDetails.js";
 
+const classes = {
+  root:{
+    width:'100%',
+    height:500,
+  }
+}
 const Switch = (props) => {
+  // const height = 200;
+  const height = (Dimensions.get('screen').height /12 )*9;
   console.log(props);
   const pages = {
     Login: "Login",
@@ -64,59 +73,9 @@ const Switch = (props) => {
     }
   };
 
-  return (
-    <SafeArea>
-      <View
-        style={{
-          flex: 1,
-          diplay: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-        }}
-      >
-        <View>
-          <Text
-            style={{
-              fontSize: 20,
-              textAlign: "center",
-              color: "violet",
-              paddingLeft: 6,
-              paddingRight: 6,
-              textShadowColor: "#585858",
-              textShadowOffset: { width: 1, height: 1 },
-              textShadowRadius: 2,
-            }}
-          >
-            Cosmos
-          </Text>
-        </View>
-
-        <View style={{ backgroundColor: "thistle", height: 0.3 }}></View>
-
-        <View style={{ flexGrow: 1, marginBottom: 56 }}>{getPage()}</View>
-        <View style={{ height: 45 }}></View>
-
-        <View style={{ backgroundColor: "grey", height: 0.5 }}></View>
-
-        <View
-          style={{
-            height: 50,
-            marginTop: "auto",
-            flexDirection: "row",
-            justifyContent: "space-around",
-            alignItems: "center",
-            backgroundColor: "white",
-          }}
-        >
-          <Ionicons name="home" size={26} color="black" />
-          <Ionicons name="search" size={26} color="black" />
-          <Ionicons name="add" size={26} color="black" />
-          <Ionicons name="gift" size={26} color="black" />
-          <Ionicons name="person" size={26} color="black" />
-        </View>
-      </View>
-    </SafeArea>
-  );
+  return <View style={[classes.root
+    ,{height}
+  ]}>{getPage()}</ View>;
 };
 
 export default connect((state) => ({

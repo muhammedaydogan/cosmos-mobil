@@ -1,6 +1,6 @@
 const initial = {
-  current: "Products",
-  // current: "ProductDetails",
+  current: "Feed",
+
 };
 
 export const screens = (state = initial, action) => {
