@@ -1,8 +1,9 @@
 import React from "react";
-import { StyleSheet, View , Dimensions, Text} from "react-native";
+import { StyleSheet, View , Dimensions, Text, TouchableOpacity} from "react-native";
 import { AntDesign, Ionicons } from '@expo/vector-icons';
-
 import { Color } from "../util/Config";
+import { changeScreen } from "../redux/actions/screens";
+import { useDispatch } from 'react-redux'
 
 let classes = {
   root: {
@@ -33,6 +34,7 @@ let classes = {
 };
 
 export default function BottomBar() {
+    const dispatch = useDispatch()
     const height = Dimensions.get('screen').height /12;
     const items = [
       {
@@ -69,8 +71,15 @@ export default function BottomBar() {
       {items.map((e,i)=>{
           return (
             <View style={classes.button}>
-              {/* <Text>{i}</Text> */}
+               <TouchableOpacity onPress={()=>{
+                  dispatch({
+                    type: "CHANGE_SCREEN",
+                    screen: e.screen,
+                  });
+               }}>
+
               {e.icon}
+               </TouchableOpacity>
             </View>
           );
       })}

@@ -4,6 +4,8 @@ const initial = {
 };
 
 export const screens = (state = initial, action) => {
+  console.log("REDUCER--" ,action.screen )
+  console.log("REDUCER_!" ,state)
   switch (action.type) {
     case "CHANGE_SCREEN":
       return {

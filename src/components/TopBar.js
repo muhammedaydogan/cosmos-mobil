@@ -1,6 +1,7 @@
 import React from "react";
-import { StyleSheet, View , Dimensions, Text} from "react-native";
+import { StyleSheet, View , Dimensions, Text, TouchableOpacity} from "react-native";
 import { AntDesign, Ionicons } from '@expo/vector-icons';
+import { useDispatch } from 'react-redux'
 
 import { Color } from "../util/Config";
 
@@ -32,12 +33,18 @@ let classes = {
 };
 
 export default function TopBar() {
+    const dispatch = useDispatch();
     const height = Dimensions.get('screen').height /12;
     const items = [
       {
         name: "Feed",
         screen: "Feed",
-        icon: <Ionicons name="camera-outline" size={28} color="grey" />,
+        icon: <TouchableOpacity onPress={()=>{
+          dispatch({
+            type: "CHANGE_SCREEN",
+            screen: "CreatePost",
+          });
+        }}><Ionicons name="camera-outline" size={28} color="grey" /></TouchableOpacity>,
       },
       {
           icon: <View style={{width:90,alignSelf:'center',justifyContent:'center'}}><Text>COSMOS</Text></View>

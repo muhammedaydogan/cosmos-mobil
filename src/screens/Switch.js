@@ -6,7 +6,9 @@ import { Ionicons } from "@expo/vector-icons";
 
 import Login from "./Login.js";
 import Dashboard from "./Dashboard";
+import {Profile} from "./Profile";
 import { Products } from "./Products.js";
+import {CreatePost}  from "./CreatePost.js";
 import { SafeArea } from "../components/safe-area.component";
 import { Feed } from "./Feed.js";
 import { ProductDetails } from "./ProductDetails.js";
@@ -25,8 +27,10 @@ const Switch = (props) => {
     Login: "Login",
     Dashboard: "Dashboard",
     Feed: "Feed",
+    Profile: "Profile",
     Products: "Products",
     ProductDetails: "ProductDetails",
+    CreatePost: "CreatePost",
   };
   const [productsStack, setProductsStack] = useState([]);
   const removeFromStact = () => {
@@ -39,14 +43,15 @@ const Switch = (props) => {
     switch (props.screen) {
       case pages.Login:
         return <Login />;
+      case pages.CreatePost:
+        return <CreatePost />;
       case pages.Dashboard:
         return <Dashboard />;
+      case pages.Profile:
+        return <Profile />;
       case pages.Feed:
         return <Feed />;
       case pages.Products:
-        // if (productsStack.length > 0) {
-        // return productsStack[productsStack.length - 1];
-        // } else {
         return <Products route={productsStack} setRoute={setProductsStack} />;
       // }
       case pages.ProductDetails:
@@ -67,7 +72,8 @@ const Switch = (props) => {
             }}
           />
         );
-
+      case pages.CreatePost:
+        return <CreatePost />;
       default:
         break;
     }
