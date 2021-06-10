@@ -40,7 +40,9 @@ const styles = {
         
     }
 }
-const config = {}
+const config = {
+    backendUrl: 'http://192.168.1.125:9000'
+}
 
 export const CreatePost = (props) => {
     
@@ -89,14 +91,15 @@ export const CreatePost = (props) => {
   
     let formData = new FormData();
     formData.append('image', { uri: localUri, name: filename, type });
-    
-  await AsyncStorage.getItem('token');
+//   await AsyncStorage.getItem('token');
     try {
-      let res = await axios.post(config.backendUrl+"/upload",formData,config)
-      if(res.data.code){
+      let res = await axios.post(config.backendUrl + "/upload", formData, {
+        headers: { "content-type": "multipart/form-data" },
+      });
+      if (res.data.code) {
         return;
       } else {
-        await AsyncStorage.setItem('imagePath', "res.data.data.imagePath")
+        await AsyncStorage.setItem("imagePath", "res.data.data.imagePath");
       }
     }catch(err){
       return
