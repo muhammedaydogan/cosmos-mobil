@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Searchbar, ActivityIndicator, Chip } from "react-native-paper";
-import { ProductCard } from "../components/product-card.component";
+import { ProductCard } from "../components/ProductCard";
 import { TagSelect } from "../components/tag-select.component";
 
 import { productService } from "../service/product-service";
@@ -184,13 +184,7 @@ export const Products = ({ route, setRoute }) => {
             data={products}
             renderItem={({ item }) => {
               return (
-                <ProductCard
-                  product={item}
-                  onItemClick={(component) => {
-                    setRoute([...route, component]);
-                    console.log(route);
-                  }}
-                />
+                  <ProductCard product={item} />
               );
             }}
             contentContainerStyle={styles.contentContainer}

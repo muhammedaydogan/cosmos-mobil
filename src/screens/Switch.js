@@ -11,7 +11,7 @@ import { Products } from "./Products.js";
 import {CreatePost}  from "./CreatePost.js";
 import { SafeArea } from "../components/safe-area.component";
 import { Feed } from "./Feed.js";
-import { ProductDetails } from "./ProductDetails.js";
+import ProductDetails  from "./ProductDetails.js";
 
 const classes = {
   root:{
@@ -78,7 +78,6 @@ const Switch = (props) => {
         break;
     }
   };
-
   return <View style={[classes.root
     ,{height}
   ]}>{getPage()}</ View>;

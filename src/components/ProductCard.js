@@ -2,9 +2,10 @@ import React from "react";
 import { StyleSheet, Image, Text, View, TouchableOpacity } from "react-native";
 import { Card, TouchableRipple } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
-import { ProductDetails } from "../screens/ProductDetails";
+import { useDispatch, connect} from 'react-redux'
 
 export const ProductCard = (props) => {
+  const dispatch = useDispatch()
   if (!props.product.name) {
     console.log("*************");
     return null;
@@ -34,7 +35,12 @@ export const ProductCard = (props) => {
     <TouchableRipple
       onPress={() => {
         // onItemClick(<ProductDetails />);
-        console.log(props.product);
+        
+        dispatch({
+          type: "CHANGE_SCREEN",
+          product: props.product,
+        });
+        console.log('sea');
       }}
     >
       <View style={{ margin: 8 }}>

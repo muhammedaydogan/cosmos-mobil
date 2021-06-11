@@ -1,5 +1,6 @@
 const initial = {
   current: "Feed",
+  product: {},
 
 };
 
@@ -8,9 +9,15 @@ export const screens = (state = initial, action) => {
   console.log("REDUCER_!" ,state)
   switch (action.type) {
     case "CHANGE_SCREEN":
+      
       return {
         ...state,
         current: action.screen,
+      };
+    case "SET_PRORUDCT":
+      return {
+        ...state,
+        product: action.product,
       };
     default:
       return state;
