@@ -1,5 +1,5 @@
 const initial = {
-  current: "Feed",
+  current: "ProductDetails",
   product: {},
 
 };
@@ -9,7 +9,7 @@ export const screens = (state = initial, action) => {
   console.log("REDUCER_!" ,state)
   switch (action.type) {
     case "CHANGE_SCREEN":
-      
+
       return {
         ...state,
         current: action.screen,
