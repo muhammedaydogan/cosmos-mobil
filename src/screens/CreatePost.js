@@ -91,19 +91,26 @@ export const CreatePost = (props) => {
   
     let formData = new FormData();
     formData.append('image', { uri: localUri, name: filename, type });
+    formData.append('tagIds', tags);
+    formData.append('productIds',"1,2" );
+    console.log(formData)
 //   await AsyncStorage.getItem('token');
-    try {
-      let res = await axios.post(config.backendUrl + "/upload", formData, {
-        headers: { "content-type": "multipart/form-data" },
+    axios
+      .post(config.backendUrl + "/upload", formData, {
+        headers: {
+          "content-type": "multipart/form-data",
+          token:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEsImVtYWlsIjoibXVoYW1tZWRheWRvZ2FuMDEwMTIzMTIzMTIzQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiYWEiLCJpYXQiOjE2MjM1OTQ2MDMsImV4cCI6MTYyMzc2NzQwM30.IYx6LYME8WTbxRyHu0C_B4cLPQukN9WO8j6lmpQEx7g",
+        },
+      })
+      .then((res) => {
+        console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log("============================================================")
+        console.log(e);
       });
-      if (res.data.code) {
-        return;
-      } else {
-        await AsyncStorage.setItem("imagePath", "res.data.data.imagePath");
-      }
-    }catch(err){
-      return
-    }
   }
   
     

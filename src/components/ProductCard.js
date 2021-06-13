@@ -35,10 +35,13 @@ export const ProductCard = (props) => {
     <TouchableRipple
       onPress={() => {
         // onItemClick(<ProductDetails />);
-        
+        dispatch({
+          type: "SET_PRODUCT",
+          product: props.product,
+        });
         dispatch({
           type: "CHANGE_SCREEN",
-          product: props.product,
+          screen: "ProductDetails",
         });
         console.log('sea');
       }}

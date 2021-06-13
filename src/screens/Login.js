@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { Text, View, TouchableOpacity, TextInput } from "react-native";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { Color } from "../util/Config";
 import { onLogin } from "../redux/actions";
 import { changeScreen } from "../redux/actions/screens";
@@ -64,16 +64,20 @@ const classes = {
 const Login = (props) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const dispatch = useDispatch();
 
   const submitLogin = () => {
-    console.log("sea");
-    props.changeScreen("Dashboard");
+    console.log("SEA");
+    dispatch({
+      type: "CHANGE_SCREEN",
+      screen: "Feed",
+    });
   };
 
   return (
     <View style={classes.root}>
       <View style={classes.headerContainer}>
-        <Text style={classes.header}>Welcome to Etherci!</Text>
+        <Text style={classes.header}>Welcome to Cosmos!</Text>
       </View>
       <View style={classes.form}>
         <Text style={classes.label}>Email</Text>

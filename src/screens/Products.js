@@ -43,12 +43,15 @@ export const Products = ({ route, setRoute }) => {
     } else if (response.data.success) {
       setProducts([
         ...response.data.trendyol.data,
-        ...response.data.gratis.data,
-        ...response.data.watsons.data,
+        // ...response.data.gratis.data,
+        // ...response.data.watsons.data,
       ]);
+
       setCategories(response.data.watsons.categories);
       setBrands(response.data.watsons.brands);
       setIsLoading(false);
+      console.log("000000000000000000000000000000000000000")
+      console.log(response.data.trendyol.data)
     } else {
       console.log("response success: false");
     }

@@ -53,12 +53,12 @@ export default function BottomBar() {
         icon: <AntDesign name="gift" size={28} color="grey" />,
         
       },
-      {
-        name: "Ask",
-        screen: "Ask",
-        icon: <AntDesign name="API" size={28} color="grey" />,
+      // {
+      //   name: "Ask",
+      //   screen: "Ask",
+      //   icon: <AntDesign name="API" size={28} color="grey" />,
 
-      },
+      // },
       {
         name: "Profile",
         screen: "Profile",

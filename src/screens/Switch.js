@@ -11,7 +11,7 @@ import { Products } from "./Products.js";
 import {CreatePost}  from "./CreatePost.js";
 import { SafeArea } from "../components/safe-area.component";
 import { Feed } from "./Feed.js";
-import {ProductDetails}  from "./ProductDetails.js";
+import ProductDetails  from "./ProductDetails.js";
 
 const classes = {
   root:{
@@ -57,19 +57,7 @@ const Switch = (props) => {
       case pages.ProductDetails:
         return (
           <ProductDetails
-            product={{
-              product: {
-                brand: "Makeuptime",
-                currency: "TL",
-                freeShipping: false,
-                imageLinks: [
-                  "https://cdn.dsmcdn.com//ty105/product/media/images/20210420/20/81703143/70739699/1/1_org.jpg",
-                ],
-                name: "Miss Galina Matte Ruj Seti 6&#x27;lı",
-                price: 18,
-                website: "trendyol",
-              },
-            }}
+           
           />
         );
       case pages.CreatePost:

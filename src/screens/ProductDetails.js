@@ -4,10 +4,13 @@ import {
   Text,
   ScrollView,
   View,
-  Image, 
+  Image,
+  TouchableOpacity, 
 } from "react-native";
+import { connect} from "react-redux"
 import { Divider } from 'react-native-elements';
 import Post from '../components/Post'
+import axios from "axios"
 
 const classes = {
   topView: {
@@ -59,13 +62,14 @@ const classes = {
     height:200,
   },
 }
-
-export const ProductDetails = (props) => {
+const ProductDetails = (props) => {
   const [photos, setPhotos] = React.useState([
-    { uri:"https://i.pinimg.com/736x/f9/44/86/f944860191500f18879b1813bda542be--beautiful-people.jpg" },
-    { uri:"https://www.karadenizgazete.com.tr/External/v1/Images/images/5f057863ae298b5d9e7b19c3.jpg" },
-    { uri:"https://pbs.twimg.com/media/EWfYWS7XkAAHZNI.jpg:large" },
-    { uri:"https://im0-tub-ru.yandex.net/i?id=a329679966b8b8916f2aa1c10d8ef4cc-l&ref=rim&n=13&w=1080&h=1080" },
+    { uri:"http://192.168.1.125:9000/getPhoto/5" },
+    { uri:"https://wikisouthafrica.co.za/wp-content/uploads/2020/03/Mihlali-Ndamase.jpg" },
+    { uri:"https://yt3.ggpht.com/a/AATXAJyGnHht0meDX29PGCgvMIocVTA4ixpy86Qsldd8Ig=s900-c-k-c0xffffffff-no-rj-mo" },
+    { uri:"https://im0-tub-ru.yandex.net/i?id=032e036b3c067e178058aa2ae1de8d5a&ref=rim&n=33&w=126&h=150" },
+    { uri:"https://yt3.ggpht.com/a/AATXAJwXCo0bsVUMlQpa4NeROeg4ANO_lRDL4Gg2YR2tpA=s900-c-k-c0xffffffff-no-rj-mo" },
+    { uri:"https://i.pinimg.com/originals/7b/78/f3/7b78f3d94c91e9ef4d33dc30418ad139.jpg" },
   ]);
   const {
     name,
@@ -74,41 +78,78 @@ export const ProductDetails = (props) => {
     currency,
     website,
     freeShipping,
+    url,
     imageLinks,
   } = props.product;
-  return <>
-  <View style={classes.topView}>
-    <View style={classes.topLeftSide}>
-      <Image
-        style={classes.avatar_icon}
-        source={{
-          uri:
-            "https://i.pinimg.com/736x/f9/44/86/f944860191500f18879b1813bda542be--beautiful-people.jpg",
-        }}
-      />
-    </View> 
-    <View style={classes.topRightSide}>
-        <View style={classes.postAndFollowers}>
-          <Text>{`${price} \nTRY`}</Text>
-          <Text>{freeShipping}</Text>
-          <Text>{"714\nfollowing"}</Text>
+  const getFeed =() => {
+    axios.post('http://192.168.1.125:9000'+"/post",{
+      "method":"get-by-product",
+      "data":{
+        "productUrl": url,
+      }
+    },{
+      headers:{
+        Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjEsImVtYWlsIjoibXVoYW1tZWRheWRvZ2FuMDEwMTIzMTIzMTIzQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiYWEiLCJpYXQiOjE2MjM2MjAzNzcsImV4cCI6MTYyMzc5MzE3N30.FGYs8nKVCG64swGy_sSdLD3zPAgPN1ImUgwvv1HIwxY" 
+      }
+    }).then((data)=>{
+      console.log("02CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+      console.log(data.data.posts)
+      setPhotos(data.data.posts);
+      console.log("02=CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+
+    })
+  }
+  React.useEffect(()=>{
+    // getFeed()
+  },[])
+  React.useEffect(()=>{
+    console.log("1111111111111111111111111")
+    console.log(props.product)
+  })
+  return (
+    <>
+      <View style={classes.topView}>
+        <View style={classes.topLeftSide}>
+          <TouchableOpacity
+            onPress={() => {
+              console.log(props.product.product);
+            }}
+          >
+            <Image
+              style={classes.avatar_icon}
+              source={{
+                uri:
+                  imageLinks[0],
+              }}
+            />
+          </TouchableOpacity>
         </View>
-        <Divider orientation="horizontal" style={{padding:5}} />
-        <Text style={classes.userNameText}>{name}</Text>
-        <Text style={classes.userNameSubText}>{brand}</Text>
-    </View> 
-  </View> 
-  {/* <ScrollView style={classes.bottomView}> */}
-  <View style={classes.bottomView}>
-      {photos.map((e,i)=>{
-        return <Image
-        style={classes.photo}
-        source={{
-          uri:e.uri,
-        }}
-        />
-      })}
-    </View>
-    {/* </ScrollView> */}
-  </>
+        <View style={classes.topRightSide}>
+          <View style={classes.postAndFollowers}>
+            <Text>{`${price} \nTRY`}</Text>
+            <Text>{freeShipping && "Free Shipping"}</Text>
+          </View>
+          <Divider orientation="horizontal" style={{ padding: 5 }} />
+          <Text style={classes.userNameText}>{name}</Text>
+          <Text style={classes.userNameSubText}>{brand}</Text>
+        </View>
+      </View>
+      <View style={classes.bottomView}>
+        {photos.map((e, i) => {
+          return (
+            <Image
+              style={classes.photo}
+              source={{
+                uri: e.uri,
+                // uri: "http://192.168.1.125:9000/getPhoto/"+e.id,
+              }}
+            />
+          );
+        })}
+      </View>
+    </>
+  );
 };
+export default connect((state) => ({
+  product: state.screens.product,
+}))(ProductDetails);
