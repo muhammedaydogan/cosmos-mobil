@@ -3,45 +3,77 @@ import { FontAwesome, Ionicons } from '@expo/vector-icons';
 
 
 import { Text, ScrollView, Image,View, TouchableOpacity } from "react-native";
+import { useDispatch} from "react-redux"
 
 export default Post = ({content}) => {
+  const dispatch = useDispatch()
   const [commentOpen, setCommentOpen] = React.useState(false);
   const [liked, setLiked] = React.useState(false);
+  const [showProduct, setShowProduct] = React.useState(false);
   const likePost = () => {
     setLiked(!liked)
   }
   return (
     <View style={classes.root}>
+      <TouchableOpacity onPress={()=>{
+         dispatch({
+          type: "SET_PROFILE",
+          profile: content.ownerId,
+        });
+        dispatch({
+          type: "CHANGE_SCREEN",
+          screen: "OtherProfile",
+        });
+      }}>
       <View style={classes.header}>
         <View style={classes.avatar}>
           <Image
             style={classes.avatar_icon}
             source={{
-              uri:"http://192.168.1.125:9000/getPhoto/"+ (content.id ? content.id : 1)
-                  }}
+              uri:
+                "http://192.168.1.125:9000/getPhoto/" +
+                (content.id ? content.id : 1),
+            }}
           />
         </View>
 
         <View style={classes.username}>
           <Text style={classes.username_text}>
-            {content?.user?.firstName +" " +content?.user?.lastName}
+            {content?.user?.firstName + " " + content?.user?.lastName}
           </Text>
         </View>
         <View style={classes.threedots}></View>
       </View>
+      </TouchableOpacity>
+
       {/* header */}
+      <TouchableOpacity 
+      // onPress={()=>{setShowProduct(!showProduct)}}
+      >
       <View style={classes.image_container}>
-        <Image
-          style={classes.image}
-          source={{
-            uri:"http://192.168.1.125:9000/getPhoto/"+ (content.id ? content.id : 1)
-          }}
-        />
+        {showProduct ? <View style={classes.iceriText}>
+<Text>{content.products[0].imageLink}</Text>
+
+        </View>
+        : <Image
+        style={classes.image}
+        source={{
+          uri:
+            "http://192.168.1.125:9000/getPhoto/" +
+            (content.id ? content.id : 1),
+        }}
+      />
+        }
+       
       </View>
+      </TouchableOpacity>
       <View style={classes.actions}>
         <TouchableOpacity onPress={likePost} style={classes.actions_icons}>
-          {liked ? <Ionicons name="heart" size={28} color="#e31b23" /> : <Ionicons name="heart-outline" size={28} color="grey" /> }
-          
+          {liked ? (
+            <Ionicons name="heart" size={28} color="#e31b23" />
+          ) : (
+            <Ionicons name="heart-outline" size={28} color="grey" />
+          )}
         </TouchableOpacity>
         <View style={classes.actions_icons}>
           <Ionicons name="chatbubble-outline" size={28} color="grey" />
@@ -70,18 +102,23 @@ export default Post = ({content}) => {
       <View style={classes.comment}>
         {commentOpen ? (
           <ScrollView style={classes.commentOpen_root}>
-            {
-              content.comments?.map((comment,i)=>{
-              return <Text style={classes.commentOpen_text}>{comment.text}</Text>
-              })
-            }
+            {content.comments?.map((comment, i) => {
+              return (
+                <Text style={classes.commentOpen_text}>{comment.text}</Text>
+              );
+            })}
           </ScrollView>
         ) : (
-          <TouchableOpacity onPress={()=>{setCommentOpen(true)}}>
-            {content.comments?.length > 0 &&  <Text style={classes.comment_text}>
-              {content.comments?.length} Yorumu Goruntule
-            </Text> }
-          
+          <TouchableOpacity
+            onPress={() => {
+              setCommentOpen(true);
+            }}
+          >
+            {content.comments?.length > 0 && (
+              <Text style={classes.comment_text}>
+                {content.comments?.length} Yorumu Goruntule
+              </Text>
+            )}
           </TouchableOpacity>
         )}
       </View>
@@ -98,7 +135,6 @@ const classes = {
     fontSize: 16,
   },
   image_container:{
-    backgroundColor:'pink',
     height:350,
   },
   image:{
@@ -114,6 +150,9 @@ const classes = {
   },
   avatar:{
     //   width:80,
+  },
+  iceriText:{
+    margin:60,
   },
   avatar_icon:{
       width:50,

@@ -1,5 +1,6 @@
 const initial = {
   current: "Login",
+  profile:0,
   product: {
     brand: "Makeuptime",
     currency: "TL",
@@ -30,6 +31,14 @@ export const screens = (state = initial, action) => {
       return {
         ...state,
         product: action.product,
+      };
+    case "SET_PROFILE":
+      console.log("SET0000000000000000000000000000000000")
+      console.log(action.profile)
+      console.log("-SET0000000000000000000000000000000000")
+      return {
+        ...state,
+        profile: action.profile,
       };
     default:
       return state;

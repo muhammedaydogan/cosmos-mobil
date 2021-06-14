@@ -7,6 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Login from "./Login.js";
 import Dashboard from "./Dashboard";
 import {Profile} from "./Profile";
+import {OtherProfile} from "./OtherProfile";
 import { Products } from "./Products.js";
 import {CreatePost}  from "./CreatePost.js";
 import { SafeArea } from "../components/safe-area.component";
@@ -30,6 +31,7 @@ const Switch = (props) => {
     Profile: "Profile",
     Products: "Products",
     ProductDetails: "ProductDetails",
+    OtherProfile: "OtherProfile",
     CreatePost: "CreatePost",
   };
   const [productsStack, setProductsStack] = useState([]);
@@ -49,6 +51,8 @@ const Switch = (props) => {
         return <Dashboard />;
       case pages.Profile:
         return <Profile />;
+      case pages.OtherProfile:
+        return <OtherProfile />;
       case pages.Feed:
         return <Feed />;
       case pages.Products:
