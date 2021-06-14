@@ -56,8 +56,8 @@ const classes = {
 
   },
   photo:{
-    width:200,
-    height:200,
+    width:170,
+    height:170,
   },
 }
 
